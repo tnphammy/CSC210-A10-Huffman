@@ -121,7 +121,8 @@ public class HuffTree extends BinaryTree<Character> {
         } catch (FileNotFoundException e) {
             System.err.println("File not found: " + e.getMessage());
         }
-        System.out.println("root now: " + root);
+        System.out.println("root now: " + root + "gahh");
+        System.out.println("GAH");
         return root;
     }
 
@@ -137,10 +138,12 @@ public class HuffTree extends BinaryTree<Character> {
         if (lineArr[0] == ' ') {
             // Get node value
             int val = Integer.parseInt(line.trim());
-            char charVal = (char) val;
-            // Set node value
-            this.setData(charVal);
-            System.out.println("charVal: " + charVal);
+            // Only accept printable ASCII characters
+            if (32 <= val && val <= 126) {
+                char charVal = (char) val;
+                // Set node value
+                this.setData(charVal);
+            }
         }
         // Recursive Step
         else if (lineArr[0] == '0') {
