@@ -109,19 +109,19 @@ public class HuffTree extends BinaryTree<Character> {
      * @return the resulting Huffman Tree
      */
     public static HuffTree readHuffTree(String file) {
-        HuffTree root = new HuffTree((char) 0);
+        HuffTree root = new HuffTree('0');
         System.out.println("root is: " + root);
         // Reads file to make tree
         String filePath = file;
         try (Scanner reader = new Scanner(new File(filePath))) {
             while (reader.hasNextLine()) {
                 String line = reader.nextLine();
-                root = root.readLine(line);
+                root.readLine(line, root);
             }
         } catch (FileNotFoundException e) {
             System.err.println("File not found: " + e.getMessage());
         }
-        System.out.println("out");
+        System.out.println("root now: " + root);
         return root;
     }
 
@@ -131,7 +131,7 @@ public class HuffTree extends BinaryTree<Character> {
      * @param line the directions
      * @return the resulting node
      */
-    public HuffTree readLine(String line) {
+    public HuffTree readLine(String line, HuffTree root) {
         // Base Case
         char[] lineArr = line.toCharArray();
         if (lineArr[0] == ' ') {
@@ -140,8 +140,7 @@ public class HuffTree extends BinaryTree<Character> {
             char charVal = (char) val;
             // Set node value
             this.setData(charVal);
-            System.out.println("thisss" + this);
-            return this;
+            System.out.println("charVal: " + charVal);
         }
         // Recursive Step
         else if (lineArr[0] == '0') {
@@ -149,16 +148,15 @@ public class HuffTree extends BinaryTree<Character> {
             if (this.getLeft() == null) {
                 this.setLeft(new HuffTree('0')); /* Create a left node */
             }
-            this.getLeft().readLine(line.substring(1));
+            this.getLeft().readLine(line.substring(1), root);
         } else if (lineArr[0] == '1') {
             // Check if right exists
             if (this.getRight() == null) {
                 this.setRight(new HuffTree('0')); /* Create a right node */
             }
-            this.getRight().readLine(line.substring(1));
+            this.getRight().readLine(line.substring(1), root);
         }
-        System.out.println("LINE: " + line);
-        return this;
+        return root;
     }
 
     public static void main(String[] args) {
