@@ -42,7 +42,7 @@ public class HuffDecode {
 
         }
         // 3. Output decoded text
-        System.out.println("your decoded string is: " + resultString);
+        System.out.println(resultString);
 
         
     }
