@@ -109,8 +109,7 @@ public class HuffTree extends BinaryTree<Character> {
      * @return the resulting Huffman Tree
      */
     public static HuffTree readHuffTree(String file) {
-        HuffTree root = new HuffTree('0');
-        System.out.println("root is: " + root);
+        HuffTree root = new HuffTree((char)0);
         // Reads file to make tree
         String filePath = file;
         try (Scanner reader = new Scanner(new File(filePath))) {
@@ -121,8 +120,6 @@ public class HuffTree extends BinaryTree<Character> {
         } catch (FileNotFoundException e) {
             System.err.println("File not found: " + e.getMessage());
         }
-        System.out.println("root now: " + root + "gahh");
-        System.out.println("GAH");
         return root;
     }
 
@@ -149,13 +146,13 @@ public class HuffTree extends BinaryTree<Character> {
         else if (lineArr[0] == '0') {
             // Check if left exists
             if (this.getLeft() == null) {
-                this.setLeft(new HuffTree('0')); /* Create a left node */
+                this.setLeft(new HuffTree((char)0)); /* Create a left node */
             }
             this.getLeft().readLine(line.substring(1), root);
         } else if (lineArr[0] == '1') {
             // Check if right exists
             if (this.getRight() == null) {
-                this.setRight(new HuffTree('0')); /* Create a right node */
+                this.setRight(new HuffTree((char)0)); /* Create a right node */
             }
             this.getRight().readLine(line.substring(1), root);
         }
