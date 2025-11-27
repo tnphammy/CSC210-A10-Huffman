@@ -138,7 +138,7 @@ Only attempt this one if you have already completed all three programs above, pl
 ## To Submit
 
    YES `HuffTree.java`  
-   `HuffEncode.java` to encode files  
+   YES `HuffEncode.java` to encode files  
    YES `HuffDecode.java` to decode files  
    `readme.md`  
  
